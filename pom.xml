@@ -6,6 +6,11 @@
 	<packaging>jar</packaging>
 	<version>0.1.1-SNAPSHOT</version>
 	<name>HelloTC</name>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<totalcross.activation_key>placeholder</totalcross.activation_key>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -17,9 +22,10 @@
 		<dependency>
 			<groupId>com.totalcross</groupId>
 			<artifactId>totalcross-sdk</artifactId>
-			<version>4.0.1</version>
+			<version>4.1.0</version>
 		</dependency>
 	</dependencies>
+	
 	<repositories>
 		<repository>
 			<id>totalcross-repo</id>
@@ -27,6 +33,7 @@
 			<url>http://maven.totalcross.com/artifactory/repo1</url>
 		</repository>
 	</repositories>
+	
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
