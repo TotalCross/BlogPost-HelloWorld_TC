@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>com.totalcross</groupId>
 			<artifactId>totalcross-sdk</artifactId>
-			<version>4.1.0</version>
+			<version>4.1.5-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	
