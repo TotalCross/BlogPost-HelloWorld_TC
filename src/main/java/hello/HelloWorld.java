@@ -45,7 +45,7 @@ public class HelloWorld extends MainWindow {
 	
 	public void onEvent(Event e) {
 		if(e.type == ControlEvent.PRESSED && e.target == btnHello){
-		       MessageBox mp = new MessageBox("TotalCross Ensina\n", "Hellow World!            ");
+		       MessageBox mp = new MessageBox("TotalCross Ensina\n", "Hello World!            ");
 		       mp.setBackColor(0xFFFFFF);
 			   mp.setForeColor(0X000000);
 		       mp.popup();
