@@ -1,104 +1,83 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+	
 	<groupId>com.totalcross</groupId>
 	<artifactId>HelloWorld</artifactId>
-	<packaging>jar</packaging>
 	<version>0.1.1-SNAPSHOT</version>
 	<name>HelloTC</name>
 	
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<totalcross.activation_key>placeholder</totalcross.activation_key>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.totalcross</groupId>
-			<artifactId>totalcross-sdk</artifactId>
-			<version>5.0.0-RC1</version>
-		</dependency>
-	</dependencies>
-	
-	<repositories>
-		<repository>
-			<id>totalcross-repo</id>
-			<name>ip-172-31-40-140-releases</name>
-			<url>http://maven.totalcross.com/artifactory/repo1</url>
-		</repository>
-	</repositories>
-	
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>net.orfjackal.retrolambda</groupId>
-				<artifactId>retrolambda-maven-plugin</artifactId>
-				<version>2.5.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>process-main</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    <dependencies>
+        <dependency>
+            <groupId>com.totalcross</groupId>
+            <artifactId>totalcross-sdk</artifactId>
+            <version>6.1.0</version>
+        </dependency>
+    </dependencies>
 
-	<profiles>
-		<profile>
-			<id>only-eclipse</id>
-			<activation>
-				<property>
-					<name>m2e.version</name>
-				</property>
-			</activation>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.eclipse.m2e</groupId>
-							<artifactId>lifecycle-mapping</artifactId>
-							<version>1.0.0</version>
-							<configuration>
-								<lifecycleMappingMetadata>
-									<pluginExecutions>
-										<pluginExecution>
-											<pluginExecutionFilter>
-												<groupId>net.orfjackal.retrolambda</groupId>
-												<artifactId>retrolambda-maven-plugin</artifactId>
-												<versionRange>[1.8.0,)</versionRange>
-												<goals>
-													<goal>process-main</goal>
-												</goals>
-											</pluginExecutionFilter>
-											<action>
-												<execute />
-											</action>
-										</pluginExecution>
-									</pluginExecutions>
-								</lifecycleMappingMetadata>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-	</profiles>
+    <repositories>
+        <repository>
+            <id>totalcross-repo</id>
+            <name>ip-172-31-40-140-releases</name>
+            <url>http://maven.totalcross.com/artifactory/repo1</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>totalcross-repo</id>
+            <name>ip-172-31-40-140-releases</name>
+            <url>http://maven.totalcross.com/artifactory/repo1</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.totalcross</groupId>
+                <artifactId>totalcross-maven-plugin</artifactId>
+                <version>1.1</version>
+                <configuration>
+                    <name>${project.name}</name>
+                    <platforms>
+                        <platform>-android</platform>
+                        <platform>-linux</platform>
+                        <platform>-linux_arm</platform>
+                    </platforms>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>post-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>retrolambda</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
