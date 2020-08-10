@@ -1,4 +1,4 @@
-# BlogPost-HelloWorld_TC
+# blog-post-hello-world
 
 Sample UI for TotalCross training.
 
